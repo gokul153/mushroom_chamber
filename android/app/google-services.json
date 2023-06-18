@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "463581514647",
+    "firebase_url": "https://bgreen-272ee-default-rtdb.firebaseio.com",
+    "project_id": "bgreen-272ee",
+    "storage_bucket": "bgreen-272ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:463581514647:android:e1247a2684c015ddf992d2",
+        "android_client_info": {
+          "package_name": "com.example.b_green"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "463581514647-t14hop68lgqbldnrc70pttcnuj0bevq1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTeP54Dr297kNmNiQKVExjy8VOLiRmqFw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "463581514647-t14hop68lgqbldnrc70pttcnuj0bevq1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
