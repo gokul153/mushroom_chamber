@@ -13,6 +13,7 @@ import 'package:http/http.dart' as http;
 import 'dart:typed_data';
 import 'dart:convert';
 
+
 class Scan extends StatefulWidget {
   const Scan({Key? key}) : super(key: key);
 
@@ -25,6 +26,7 @@ File? _image, _croppedFile;
 var cropim;
 int cropcheck = 0;
 String message = "";
+var responsefinal = "Not found";
 
 class _ScanState extends State<Scan> {
   ///static Future<File> Function(File file) cropImage
@@ -254,10 +256,44 @@ Reference referenceimage_up = referencedirimage.child('imagename');
 String image_url = '';
 
 class _cropwindowState extends State<Cropwindow> {
+  void updateresult(String response) {
+    setState(() {
+      responsefinal = response;
+      print("$responsefinal updated");
+    });
+  }
+
   Future<void> onUploadImage() async {
     print("process_triggered");
+    //var url = '${192.168.29.160:8080/upload}ocr';
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('http://192.168.29.160:8080/upload'));
+
+    // Add image file as a part
+    var file =
+        await http.MultipartFile.fromPath('image', await _croppedFile!.path);
+    request.files.add(file);
+
+    // Send the request
+    var response = await request.send();
+    var responseString = await response.stream.bytesToString();
+    print(response);
+    // Process the response
+    if (response.statusCode == 200) {
+      print('Image uploaded successfully');
+      print(responseString);
+      var responseData = jsonDecode(responseString);
+      print(responseData);
+      var extractedValue = responseData['predicted_label'];
+
+  // Use the extracted value
+  print('Extracted value: $extractedValue');
+      updateresult(extractedValue);
+    } else {
+      print('Failed to upload image. Error: ${response.statusCode}');
+    }
     //File imagefile = _croppedFile; //convert to bytes
-    String url =
+    /*   String url =
         "http://ec2-13-233-200-28.ap-south-1.compute.amazonaws.com:8080/disease?f=";
     Uint8List imagebytes = await _croppedFile!.readAsBytes();
     String base64string =
@@ -270,7 +306,7 @@ class _cropwindowState extends State<Cropwindow> {
     String result = response.body;
     print(result);
     //print(response.body);
-    /// return response.body;
+    /// return response.body;**/
   }
 
   /* Future<void> upimage() async {
@@ -318,10 +354,14 @@ class _cropwindowState extends State<Cropwindow> {
       appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 85, 139, 47),
           title: const Text("Crop image")),
-      body: Center(
-        child: _image == null
-            ? const Text('No image selected.')
-            : Image.file(_image!),
+      body: Column(
+        children: [
+          _image == null
+              ? const Text('No image selected.')
+              : Image.file(_image!),
+          Text("RESULT IS"),
+          Text(responsefinal),
+        ],
       ),
       floatingActionButton:
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [

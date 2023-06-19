@@ -72,7 +72,7 @@ class _CreateaccState extends State<Createacc> {
               const SizedBox(
                 height: 10,
               ),
-              const Column(
+               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Align(

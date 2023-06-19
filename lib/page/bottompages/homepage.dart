@@ -79,7 +79,7 @@ class _HomeState extends State<Home> {
           ),
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            const SingleChildScrollView(
+             SingleChildScrollView(
               child: Column(
                 // mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -264,7 +264,7 @@ class _HomeState extends State<Home> {
                   decoration: BoxDecoration(
                       color: Colors.grey.shade200,
                       borderRadius: BorderRadius.circular(15)),
-                  child: const Row(
+                  child:  Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Icon(
@@ -320,7 +320,7 @@ class _HomeState extends State<Home> {
                   decoration: BoxDecoration(
                       color: Colors.grey.shade200,
                       borderRadius: BorderRadius.circular(15)),
-                  child: const Row(
+                  child:  Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Icon(
